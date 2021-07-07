@@ -16,7 +16,7 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - image: ldssa/pokemon-api:92a430a
+        - image: ldssa/pokemon-api:a520b1f
           name: pokemon-api
           resources: {}
           livenessProbe:

@@ -16,7 +16,7 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - image: ldssa/learning-api:92a430a
+        - image: ldssa/learning-api:a520b1f
           name: learning-api
           resources: {}
           livenessProbe:
