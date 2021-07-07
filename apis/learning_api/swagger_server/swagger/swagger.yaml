@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: FakeUsers API
+  description: API providing fake user information!
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /random:
+    summary: Information about a random user.
+    get:
+      summary: Get information about a random user.
+      operationId: random_get
+      responses:
+        "200":
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        default:
+          description: Error.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /user:
+    summary: Information about specific users.
+    get:
+      summary: Get information about specific users.
+      operationId: user_get
+      parameters:
+      - name: firstname
+        in: query
+        description: The user's first name.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: lastname
+        in: query
+        description: The user's last name.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: gender
+        in: query
+        description: The gender of the user.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The page (10 results per page)
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          default: 1
+      responses:
+        "200":
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+        default:
+          description: Error.
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    inline_response_200:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The user ID.
+        first_name:
+          type: string
+          description: The user's first name.
+        last_name:
+          type: string
+          description: The user name.
+        email:
+          type: string
+          description: The user's email.
+        gender:
+          type: string
+          description: The user's gender.
+        ip_address:
+          type: string
+          description: The user's ip address.
+      example:
+        gender: gender
+        last_name: last_name
+        id: 0
+        ip_address: ip_address
+        first_name: first_name
+        email: email
+    inline_response_400:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The error message.
+        wrong_parameter:
+          type: string
+          description: The name of the parameter causing the error.
+

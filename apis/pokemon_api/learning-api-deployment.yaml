@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pokemon-api
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: pokemon-api
+        environment: production
+    spec:
+      restartPolicy: Always
+      containers:
+        - image: ldssa/pokemon-api:92a430a
+          name: pokemon-api
+          resources: {}
+          livenessProbe:
+            httpGet:
+              httpHeaders:
+                - name: Host
+                  value: pokemon-api.lisbondatascience.org
+              path: /random
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              httpHeaders:
+                - name: Host
+                  value: pokemon-api.lisbondatascience.org
+              path: /random
+              port: 8080
+            timeoutSeconds: 5
