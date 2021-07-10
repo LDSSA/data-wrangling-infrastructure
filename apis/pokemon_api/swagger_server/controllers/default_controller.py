@@ -39,19 +39,19 @@ def moves_get(name=None, power=None, accuracy=None):  # noqa: E501
         filtered_moves = [
             move
             for move in filtered_moves
-            if move['ename'] == name
+            if str(move['ename']) == name
         ]
     if power:
         filtered_moves = [
             move
             for move in filtered_moves
-            if move['power'] >= power
+            if move.get('power', 0) is not None and move.get('power', 0) >= power
         ]
     if accuracy:
         filtered_moves = [
             move
             for move in filtered_moves
-            if move['accuracy'] >= accuracy
+            if move.get('accuracy', 0) is not None and move.get('accuracy', 0) >= accuracy
         ]
 
     return filtered_moves
