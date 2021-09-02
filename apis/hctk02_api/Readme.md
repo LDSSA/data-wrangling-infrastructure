@@ -1,11 +1,17 @@
-Api Ldsa -  Hackthon 2
+API LDSSA -  Hackthon 2
 ============================
 
 ## Deploy instructions
-Install node requirements
-`npm instal`
+To deploy, first [install serverless](https://www.serverless.com/framework/docs/getting-started) locally.
 
-Deploy the app
-`sls deploy`
+The following instructions were testes on a Mac, so I can't promise they'll work in general.
 
+Then run:
+```
+serverless plugin install -n serverless-python-requirements
+```
 
+And finally deploy the app with
+```
+sls deploy
+```
