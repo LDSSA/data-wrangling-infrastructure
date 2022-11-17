@@ -3,27 +3,22 @@ import json
 from flask_restplus import Resource, fields, Namespace
 from flask_restplus.errors import abort
 
+# Timestamp,RSI10,%K200,%K30,EMA10
+
 
 ns = Namespace(
-    "missingdata",
+    "christmas_data",
     description=""
 )
 
 response = ns.model(
-    "phishing_data",
+    "christmas_data",
     {
-        "PopUpWindow": fields.Integer,
-        "SubmitInfoToEmail": fields.Integer,
-        "IframeOrFrame": fields.Integer,
-        "MissingTitle": fields.Integer,
-        "ImagesOnlyInForm": fields.Integer,
-        "SubdomainLevelRT": fields.Integer,
-        "UrlLengthRT": fields.Integer,
-        "PctExtResourceUrlsRT": fields.Integer,
-        "AbnormalExtFormActionR": fields.Integer,
-        "ExtMetaScriptLinkRT": fields.Integer,
-        "PctExtNullSelfRedirectHyperlinksRT": fields.Integer,
-        "CLASS_LABEL": fields.Integer,
+        "Timestamp": fields.Integer,
+        "RSI10": fields.Float,
+        "%K200": fields.Float,
+        "%K30": fields.Float,
+        "EMA10": fields.Float,
     }
 )
 
