@@ -23,7 +23,7 @@ response = ns.model(
 )
 
 
-with open('data.json') as json_file:
+with open('api_dataset.json') as json_file:
     data = json.load(json_file)
 
 
